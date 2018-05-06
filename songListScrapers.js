@@ -20,28 +20,27 @@ console.log(songTableIterator.childNodes[4].childNodes[0].childNodes[0].innerTex
 */
 songTableIterator = googlePlaySongs.firstElementChild;
 songTableIterator = songTableIterator.nextElementSibling;
+console.log("This is first item in playlist");
 console.log(songTableIterator);
-var delayInMilliseconds = 1000;
+//var delayInMilliseconds = 1000;
 //document.getElementById("mainPanel").scrollIntoView();
 /*
       setTimeout(function() {
       }, delayInMilliseconds)
 */
-  for (i = 0; i < songTableLength - 1; i++) {
-
-    if (i % 10 == 0) {
-      console.log("This is the ideal i " + i);
-
-      setTimeout(function() {
-        songTableIterator.scrollIntoView({behavior: "smooth"});
-      }, 1000)
-
-    }
-
-    console.log(songTableIterator);
-    songTableIterator = songTableIterator.nextElementSibling;
-    //songScrapArray.push({songTableIterator.childNodes[1].childNodes[1].innerText,songTableIterator.childNodes[3].childNodes[0].childNodes[0].innerText,songTableIterator.childNodes[4].childNodes[0].childNodes[0].innerText});
+songTableCounter = 0;
+var scraperFunction = setInterval(function() { scraperAndScroller() }, 1000);
+function scraperAndScroller() {
+  console.log("This is the song table iterator");
+  console.log(songTableIterator);
+  console.log("This is the songTableCounter " + songTableCounter);
+  songTableCounter++;
+  songTableIterator = songTableIterator.nextElementSibling;
+  songTableIterator.scrollIntoView();
+  if (songTableCounter == songTableLength) {
+    clearInterval(scraperFunction);
   }
+}
 
 /*
 for (i = 0; i < songTableLength - 1; i++) {
