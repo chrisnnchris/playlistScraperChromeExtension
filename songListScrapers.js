@@ -1,4 +1,3 @@
-//look at songlist-container for google play music
 var googlePlaySongs = document.getElementsByClassName("song-table")[0].children[1];
 var songTableLength = googlePlaySongs.getAttribute("data-count");
 console.log(googlePlaySongs);
@@ -20,7 +19,11 @@ function scraperAndScroller() {
   console.log("This is the songTabelIterator album title: " + songTableIterator.childNodes[4].childNodes[0].childNodes[0].innerText);
   console.log("This is the songTableCounter " + songTableCounter);
   songTableCounter++;
-  songScrapArray.push(songTableIterator.childNodes[1].childNodes[1].innerText + "," + songTableIterator.childNodes[3].childNodes[0].childNodes[0].innerText+","+songTableIterator.childNodes[4].childNodes[0].childNodes[0].innerText);
+  var songTitleToAdd = songTableIterator.childNodes[1].childNodes[1].innerText;
+  //songTitleToAdd = songTitleToAdd.replace(/,/g,"\",\"");
+  var songArtistToAdd = songTableIterator.childNodes[3].childNodes[0].childNodes[0].innerText;
+  var songAlbumToAdd = songTableIterator.childNodes[4].childNodes[0].childNodes[0].innerText;
+  songScrapArray.push(songTitleToAdd + "," + songArtistToAdd +","+ songAlbumToAdd);
   songTableIterator = songTableIterator.nextElementSibling;
   songTableIterator.scrollIntoView();
   if (songTableCounter == songTableLength) {
@@ -28,7 +31,11 @@ function scraperAndScroller() {
     console.log("This is the songScrapArray");
     console.log(songScrapArray);
     // Following is test
+
     var csvString = songScrapArray.join("%0A");
+    console.log("This is the CSV string");
+    console.log(csvString);
+    /*
     var a         = document.createElement('a');
     a.href        = 'data:attachment/csv,' + csvString;
     a.target      = '_blank';
@@ -36,6 +43,7 @@ function scraperAndScroller() {
 
     document.body.appendChild(a);
     a.click();
+    */
   }
 }
 
