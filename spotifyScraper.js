@@ -5,6 +5,7 @@ var tracklist = document.getElementsByClassName("tracklist");
 console.log("This is artist + album length " + tracklist[0].children[0].children[0].children[1].children[0].children[1].children.length); // artist title
 console.log("For loop going through the tracklist element");
 var spotifySongScrapArray = [];
+spotifySongScrapArray.push("Song Title,Artist Title,Album Title");
 //console.log(tracklist[0]);
 for (a = 0; a < tracklist[0].children.length; a++) {
   //console.log(tracklist[0].children[a].children[0].children[1].children[0].children[0].innerText);
@@ -45,6 +46,15 @@ for (a = 0; a < tracklist[0].children.length; a++) {
   spotifySongScrapArray.push(songTitleToAdd + "," + songArtistToAdd +","+ songAlbumToAdd);
 }
 console.log(spotifySongScrapArray);
+var csvString = spotifySongScrapArray.join("\n");
+var encodedCSVString = encodeURI(csvString);
+var a = document.createElement('a');
+a.href = 'data:attachment/csv,' + encodedCSVString;
+a.target = '_blank';
+a.download = 'spotifyScrap.csv';
+
+document.body.appendChild(a);
+a.click();
 /*
 for (i = 0; i < tracklist[0].children[0].children[0].children[1].children[0].children[1].children.length; i++) {
   console.log(tracklist[0].children[0].children[0].children[1].children[0].children[1].children[i]);
