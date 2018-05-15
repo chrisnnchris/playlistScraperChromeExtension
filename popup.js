@@ -1,37 +1,38 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  var queryInfo = {
+    active: true,
+    currentWindow: true
+  };
 
-  authYoutubeToPocket.isAuthenticated();
-  var redirect_uriPath = chrome.extension.getURL('login.html');
-  document.getElementById("authenticationPage").setAttribute('href', redirect_uriPath);
-
-  console.log("This is the page verifier " + onSubscriptionPage.verifyPage());
-  document.getElementById("authenticateButton").addEventListener('click',  () => {
-      //console.log("This is the isAuthenticated result")
-      //console.log(!authYoutubeToPocket.isAuthenticated());
-    if (authYoutubeToPocket.isAuthenticated() === false) {
-      authYoutubeToPocket.authenticate();
-    } else {
-      console.log("you are already authenticated")
+  chrome.tabs.query(queryInfo, (tabs) => {
+    var tab = tabs[0];
+    var url = tab.url;
+    console.log("This is the url examined: " + url);
+    document.getElementById("GooglePlayScraper").disabled = true;
+    document.getElementById("SpotifyScraper").disabled = true;
+    if (url.includes('https://play.google.com/music/listen') == true || url.includes('http://play.google.com/music/listen') == true) {
+      console.log("We have google play music");
+      if (url.includes('/pl/') == true) {
+        console.log("We also have google play music playlist");
+        document.getElementById("GooglePlayScraper").disabled = false;
+      }
+    }
+    if (url.includes('https://open.spotify.com') == true || url.includes('http://open.spotify.com') == true) {
+      console.log("We have Spotify");
+      if (url.includes('/playlist/') == true) {
+        console.log("We also have Spotify playlist");
+        document.getElementById("SpotifyScraper").disabled = false;
+      }
     }
   });
-  document.getElementById("clearTokenButton").addEventListener('click', () => {
-    if (authYoutubeToPocket.isAuthenticated() === true) {
-      authYoutubeToPocket.logout();
-    } else {
-      console.log("You aren't authenticated already");
-    }
+
+  document.getElementById("GooglePlayScraper").addEventListener('click', () => {
+    scrapersFunctions.googlePlayScrape();
   });
-  document.getElementById("YoutubeScrapeToPocket").addEventListener('click', () => {
-    if (authYoutubeToPocket.isAuthenticated() === true) {
-      chrome.tabs.executeScript({
-        file: "extract.js"
-      }, function (result) {
-        addToPocket.YoutubeSubsToPocket(result);
-      });
-    } else {
-      console.log("Can't add. Not authenticated")
-    }
+
+  document.getElementById("SpotifyScraper").addEventListener('click', () => {
+    scrapersFunctions.spotifyPlayScrape();
   });
 
   console.log("This log message just goes to popup console, put in a chrome.tabs to get real browser");
