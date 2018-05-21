@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log("We have google play music");
       if (url.includes('/pl/') == true) {
         console.log("We also have google play music playlist");
+        document.getElementById("GooglePlayVerify").text = "You may scrape Google Play playlist.";
         document.getElementById("GooglePlayScraper").disabled = false;
       }
     }
@@ -22,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log("We have Spotify");
       if (url.includes('/playlist/') == true) {
         console.log("We also have Spotify playlist");
+        document.getElementById("SpotifyVerify").text = "You may scrape Spotify playlist.";
         document.getElementById("SpotifyScraper").disabled = false;
       }
     }
