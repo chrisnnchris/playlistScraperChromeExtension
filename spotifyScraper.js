@@ -9,15 +9,15 @@ spotifySongScrapArray.push("Song Title,Artist Title,Album Title");
 //console.log(tracklist[0]);
 for (a = 0; a < tracklist[0].children.length; a++) {
   //console.log(tracklist[0].children[a].children[0].children[1].children[0].children[0].innerText);
-  var songTitleToAdd = "\"" + tracklist[0].children[a].children[0].children[1].children[0].children[0].innerText + "\"";
-  //console.log("This is the song title to add: " + songTitleToAdd);
+  var songTitleToAdd = "\"" + tracklist[0].children[a].children[0].children[0].children[1].children[0].children[0].innerText + "\"";
+  console.log("This is the song title to add: " + songTitleToAdd);
   //console.log("This is the set of artists and albums");
   //console.log(tracklist[0].children[a].children[0].children[1].children[0].children[1]);
   //console.log("This is the set's length " + tracklist[0].children[a].children[0].children[1].children[0].children[1].children.length);
   var songArtistToAdd = "";
   var songAlbumToAdd = "";
-  for (b = 0; b < tracklist[0].children[a].children[0].children[1].children[0].children[1].children.length; b++) {
-    var trackListItr = tracklist[0].children[a].children[0].children[1].children[0].children[1].children[b];
+  for (b = 0; b < tracklist[0].children[a].children[0].children[0].children[1].children[0].children[1].children.length; b++) {
+    var trackListItr = tracklist[0].children[a].children[0].children[0].children[1].children[0].children[1].children[b];
     //console.log("This is trackListItr");
     //console.log(trackListItr);
     //console.log("This is the trackListItr's classname " + trackListItr.className);

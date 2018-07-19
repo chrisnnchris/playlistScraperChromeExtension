@@ -4,7 +4,7 @@
   "name": "Playlist Scraper",
   "description": "Scrapes playlist and exports song, artist, album in a Excel friendly file. Compatible Spotify and Google Play Music.",
   "author": "Christopher Nguyen",
-  "version": "1.0",
+  "version": "1.1",
   "browser_action": {
     "default_icon": "scraperExtension128.png",
     "default_popup": "popup.html",
