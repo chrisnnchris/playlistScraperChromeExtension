@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("This is the url examined: " + url);
     document.getElementById("GooglePlayScraper").disabled = true;
     document.getElementById("SpotifyScraper").disabled = true;
+    document.getElementById("YoutubeScraper").disabled = true;    
     if (url.includes('https://play.google.com/music/listen') == true || url.includes('http://play.google.com/music/listen') == true) {
       console.log("We have google play music");
       if (url.includes('/pl/') == true) {
@@ -20,6 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
     if (url.includes('https://open.spotify.com') == true || url.includes('http://open.spotify.com') == true) {
+      console.log("We have Spotify");
+      if (url.includes('/playlist/') == true) {
+        console.log("We also have Spotify playlist");
+        document.getElementById("SpotifyVerify").text = "You may scrape Spotify playlist.";
+        document.getElementById("SpotifyScraper").disabled = false;
+      }
+    }
+    if (url.includes('https://www.youtube.com/playlist') == true || url.includes('http://www.youtube.com/playlist') == true) {
       console.log("We have Spotify");
       if (url.includes('/playlist/') == true) {
         console.log("We also have Spotify playlist");
