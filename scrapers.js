@@ -9,7 +9,7 @@ var scrapersFunctions =
       });
 
       chrome.tabs.executeScript({
-        file: "songListScrapers.js"
+        file: "GooglePlayScraper.js"
       });
 
     },
@@ -25,5 +25,17 @@ var scrapersFunctions =
         file: "spotifyScraper.js"
       });
 
-    }
+    },
+  youtubeScrape: function () {
+    console.log("About to youtubeScrape");
+
+    chrome.tabs.executeScript({
+      code: "console.log('We got executeScript for youtubeScrape and this appears in original tab')"
+    });
+
+    chrome.tabs.executeScript({
+      file: "YoutubeScraper.js"
+    });
+
+  }
 }
