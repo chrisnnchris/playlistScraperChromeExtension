@@ -45,6 +45,25 @@ var scraperInterval = setInterval(function() {
     }
     console.log("This is youtubeSongsArr after adjustment");
     console.log(youtubeSongsArr);
+
+    // setting up csv string to be later converted
+    var csvString = youtubeSongsArr.join("\n");
+    console.log("This is the CSV string");
+    console.log(csvString);
+
+
+    var encodedCSVString = encodeURI(csvString);
+    //console.log(encodedCSVString);
+    //songDOM.scrollTop = 0;
+
+    var a         = document.createElement('a');
+    a.href        = 'data:attachment/csv,' + encodedCSVString;
+    a.target      = '_blank';
+    a.download    = 'youtubePlaylistScrape.csv';
+
+    document.body.appendChild(a);
+    a.click();
+
   }
 }, 300)
 /*
